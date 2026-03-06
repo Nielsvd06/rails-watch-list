@@ -7,3 +7,42 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Cleaning the db
+
+Bookmark.destroy_all
+Movie.destroy_all
+List.destroy_all
+
+# Create 4 movies
+
+movie_1 = Movie.create!(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War
+in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
+puts "Movie id #{movie_1.id} is created"
+
+movie_2 = Movie.create!(title: "The Shawshank Redemption", overview: "Framed in the 1940s for double murder, upstanding banker Andy
+Dufresne begins a new life at the Shawshank prison", poster_url: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", rating: 8.7)
+puts "Movie id #{movie_2.id} is created"
+
+movie_3 = Movie.create!(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic.",
+poster_url: "https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg", rating: 7.9)
+puts "Movie id #{movie_3.id} is created"
+
+movie_4 = Movie.create!(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull
+off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
+puts "Movie id #{movie_4.id} is created"
+
+# Create a List
+action_list = List.create!(name: "Action Packed")
+drama_list = List.create!(name: "Top Dramas")
+comedy_list = List.create!(name: "Top Comedy")
+
+puts "Lists created!"
+
+# Create Bookmarks (This links Movies to Lists)
+Bookmark.create!(comment: "Amazing superhero flick", movie: movie_1, list: action_list)
+Bookmark.create!(comment: "A true cinematic masterpiece", movie: movie_2, list: drama_list)
+Bookmark.create!(comment: "Bring your tissues!", movie: movie_3, list: drama_list)
+Bookmark.create!(comment: "Fast and fun movie!", movie: movie_4, list: comedy_list)
+
+puts "Bookmarks created!"

@@ -1,0 +1,11 @@
+<h1>My Movie Lists</h1>
+
+<% if @lists.any? %>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= link_to list.name, list_path(list) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No lists found! <a href="<%= new_list_path %>">Create your first one here.</a></p>
+<% end %>
